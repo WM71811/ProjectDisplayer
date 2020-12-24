@@ -18,17 +18,17 @@ export class UserSearchComponent implements OnInit {
   ngOnInit() {
     if (this.githubUser) {
       this.githubUser.user = false;
-      this.githubUser.content = '';
-      if (this.githubUser.userName && this.githubUser.userName.length > 0) {
-          this._githubService.getUser().subscribe(user => {
+      this.githubUser.content = ''; //content means readme content
+      if (this.githubUser.userName.length > 0) {
+          this._githubService.findUser().subscribe(user => {
               this.githubUser.user = user;
               this.userUpdated.emit(this.githubUser);
-          },(error) => {
+          }, (error) => {
                   this.githubUser.user = false;
               },
           );
 
-          this._githubService.getProjects().subscribe(projects => {
+          this._githubService.findProjects().subscribe(projects => {
               console.log(projects);
               this.githubUser.projects = projects;
               this.userUpdated.emit(this.githubUser);
@@ -36,26 +36,23 @@ export class UserSearchComponent implements OnInit {
                   this.githubUser.user = false;
               },
           );
-
         }
-
-
   }
   }
 
   searchUser() {
-        this.githubUser.content = '';
-    if (this.githubUser.userName && this.githubUser.userName.length > 0) {
+    this.githubUser.content = '';
+    if (this.githubUser.userName.length > 0) {
         this._githubService.updateUser(this.githubUser.userName);
-        this._githubService.getUser().subscribe(user => {
+        this._githubService.findUser().subscribe(user => {
             this.githubUser.user = user;
             this.userUpdated.emit(this.githubUser);
-        },(error) => {
+        }, (error) => {
                 this.githubUser.user = false;
             },
         );
 
-        this._githubService.getProjects().subscribe(projects => {
+        this._githubService.findProjects().subscribe(projects => {
             console.log(projects);
             this.githubUser.projects = projects;
             this.userUpdated.emit(this.githubUser);

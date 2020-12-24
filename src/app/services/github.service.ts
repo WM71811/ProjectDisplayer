@@ -9,30 +9,30 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class GithubService {
     private userName : string;
-    private clientId: string ='';
-    private clientSecret: string ='';
-    private findUserUrl = 'https://api.github.com/users/[userName]?'+ this.clientId + this.clientSecret;
-    private findUserProjectsUrl = 'https://api.github.com/users/[userName]/repos?' + this.clientId + this.clientSecret;
-    private findReadmeUrl = 'https://api.github.com/repos/[userName]/[project]/readme?' + this.clientId + this.clientSecret;
+    private clientIDAndSecret: string ='client_id=Iv1.1ee8def374fd5e8f '
+        + '&client_secret=2edc825166f23d2adb7fc30a0579ba7da734f682';
+    private findUserUrl = 'https://api.github.com/users/[userName]?'+ this.clientIDAndSecret;
+    private findUserProjectsUrl = 'https://api.github.com/users/[userName]/repos?' + this.clientIDAndSecret;
+    private findReadmeUrl = 'https://api.github.com/repos/[userName]/[project]/readme?' + this.clientIDAndSecret;
 
     constructor(private _http:HttpClient){
         let options =  { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
         this.userName = '';
     }
 
-    getUser(){
+    findUser(){
         if(this.userName){
             return this._http.get(this.findUserUrl.replace('[userName]', this.userName))
         }
     }
 
-    getProjects(){
+    findProjects(){
         if(this.userName){
             return this._http.get(this.findUserProjectsUrl.replace('[userName]', this.userName))
         }
     }
 
-    getReadme(projectName: string) {
+    findReadme(projectName: string) {
         if (this.userName) {
             return this._http.get(this.findReadmeUrl.replace('[userName]', this.userName)
                   .replace('[project]', projectName))
@@ -44,10 +44,6 @@ export class GithubService {
     }
 
     private handleError(error:any){
-        if (error.status === 401) {
-            return Observable.throw(error.status);
-        } else {
             return Observable.throw(error.status || 'Server error');
-        }
     }
 }

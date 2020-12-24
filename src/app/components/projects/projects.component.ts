@@ -20,9 +20,9 @@ export class ProjectsComponent implements OnInit {
   }
 
   toReadme(name: string) {
-      this._githubService.getReadme(name).subscribe((readme:Response) => {
-      console.log(JSON.stringify(readme));
-      console.log((<any>readme).content);
+      this._githubService.findReadme(name).subscribe((readme:Response) => {
+      //console.log(JSON.stringify(readme));
+      //console.log((<any>readme).content);
       this.githubUser.content = atob((<any>readme).content);
       this.userUpdated.emit(this.githubUser);
       }, (err) => {
