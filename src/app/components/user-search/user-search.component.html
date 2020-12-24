@@ -1,0 +1,17 @@
+<nav class="navbar navbar-light bg-info navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">Project Displayer</a>
+    </div>
+    <div class=" col-md-8">
+      <form id="searchForm">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" name="username" class="form-control" placeholder="Search a user's projects by github user name"
+                   [(ngModel)]="githubUser.userName" (keyup)="searchUser()">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,12 @@
+<div class="m-x-auto" *ngIf="githubUser.content.length > 0" >
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Readme</h3>
+    </div>
+    <div class="panel-body">
+      <markdown [data]="githubUser.content">
+      </markdown>
+    </div>
+</div>
+</div>
+

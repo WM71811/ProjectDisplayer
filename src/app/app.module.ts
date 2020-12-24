@@ -1,18 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule }   from '@angular/forms';
 import { AppComponent } from './app.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { UserSearchComponent } from './components/user-search/user-search.component';
+import { ReadmeComponent } from './components/readme/readme.component';
+import { MarkdownModule, MarkdownService, MarkedOptions } from 'ngx-markdown';
+import { GithubService } from './services/github.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProjectsComponent,
+    UserSearchComponent,
+    ReadmeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    FormsModule,
+    MarkdownModule.forRoot()
   ],
-  providers: [],
+  providers: [GithubService, MarkdownService, MarkedOptions],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

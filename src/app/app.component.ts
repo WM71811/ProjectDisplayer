@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GithubUser } from './model/github-user';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'project-displayer';
+
+  public User:any = GithubUser
+
+  constructor(){
+    this.User = new GithubUser(false,null,'','');
+  }
 }

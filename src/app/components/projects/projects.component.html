@@ -1,0 +1,38 @@
+<div class=row *ngIf="(githubUser.userName.length == 0)">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+    <span class="text-dark h6">By entering a github user name, Projects Displayer will show the projects owned by that user, and
+    you can click the readme link to read the project's readme.md as well. When you clear the input, you will be brought
+      back to this current page.
+      Note: for some times, the system may not be able to respond with the correct projects, but the projects that
+      are found based on the front part of the inputted user name. In this case, you can try pressing enter again or input again.
+      </span><br>
+    </div>
+  </div>
+</div>
+
+<div class="m-x-auto" *ngIf="githubUser.userName && githubUser.user == false && githubUser.userName.length > 0">
+  <p class="uk-text-warning message alert-danger amber rounded p-4">
+  <span class="text-dark h5">Project Displayer cannot find the github page corresponding to the user name entered. Please try again.</span><br>
+</div>
+
+<div class="row" *ngIf="(githubUser.content.length == 0) && githubUser.userName && githubUser.userName.length > 0">
+  <div class="col-md-8">
+          <ul class="list-group">
+            <li class="list-group-item"><b>Username: </b> {{githubUser.user.login}}</li>
+            <li class="list-group-item"><b>Github account created at: </b> {{githubUser.user.created_at}}</li>
+          </ul>
+          <div class="card">
+                <h5 class="card-header">Repos</h5>
+                <div class="card-block">
+                    <div class="list-group">
+                        <a *ngFor="let project of githubUser.projects" target="_blank" class="list-group-item list-group-item-action">
+                                <h6 class="list-group-item-heading">{{project.name}}</h6><a class="hover" (click)="toReadme(project.name)"> Readme (click to see the readme) </a>
+                                <p class="list-group-item-text">{{project.description}}</p>
+                            </a>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</div>
