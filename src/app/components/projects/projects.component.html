@@ -13,7 +13,9 @@
 
 <div class="m-x-auto" *ngIf="githubUser.userName && githubUser.user == false && githubUser.userName.length > 0">
   <p class="uk-text-warning message alert-danger amber rounded p-4">
-  <span class="text-dark h5">Project Displayer cannot find the github page corresponding to the user name entered. Please try again.</span><br>
+  <span class="text-dark h5">Project Displayer cannot find the github page corresponding to the user name entered,
+  probably due to an invalid user name entered, or due to reaching the max rate limit of GitHub API. If it is due to the
+  latter, please try again in a later time. </span><br>
 </div>
 
 <div class="row" *ngIf="(githubUser.content.length == 0) && githubUser.userName && githubUser.userName.length > 0">
