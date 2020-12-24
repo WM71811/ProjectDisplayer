@@ -1,6 +1,15 @@
 # ProjectDisplayer
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+This project was generated with [Angular CLI].
+
+To start the application,
+* run `npm install` to install the dependencies
+* run `npm start` to start the application
+* open browser on http://localhost:4200/ to use the application
+
+The application allows for users to search the GitHub projects, or in another name, repositories, via entering the GitHub user name. Users can also access the content of README.md of each project.
+
+Due to rate limit of GitHub API, searching for too many times in a short period will result in failure to respond by the GitHub API, and is shown in the application as an error.
 
 ## Development server
 
